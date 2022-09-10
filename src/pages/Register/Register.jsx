@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { TextField, Grid, Typography, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import operations from 'redux/auth/userOperation';
+import { Container } from '@mui/system';
 export default function Register() {
   const dispatch = useDispatch();
   const [registerName, setRegisterName] = useState('');
@@ -39,36 +41,53 @@ export default function Register() {
   };
 
   return (
-    <form action="" onSubmit={handleFormSubmit}>
-      <h2>Register</h2>
-      <label htmlFor="">
-        Name
-        <input
-          type="text"
-          name="name"
-          value={registerName}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label htmlFor="">
-        E-mail
-        <input
-          type="mail"
-          name="email"
-          value={registerEmail}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label htmlFor="">
-        Password
-        <input
-          type="password"
-          name="password"
-          value={registerPassword}
-          onChange={handleInputChange}
-        />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <Container>
+      <Typography align="center" variant="h6" component="h3" pt={3} mb={5}>
+        Register:
+      </Typography>
+      <form action="" onSubmit={handleFormSubmit}>
+        <Grid container direction="column" alignItems="center" spacing={6}>
+          <Grid item>
+            <TextField
+              sx={{ width: '50ch' }}
+              variant="filled"
+              size="small"
+              label="Name"
+              type="email"
+              name="email"
+              value={registerName}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              sx={{ width: '50ch' }}
+              variant="filled"
+              size="small"
+              label="E-mail"
+              type="email"
+              name="email"
+              value={registerEmail}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              sx={{ width: '50ch' }}
+              variant="filled"
+              size="small"
+              label="Password"
+              type="password"
+              name="password"
+              value={registerPassword}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <Button type="submit">Register</Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   );
 }

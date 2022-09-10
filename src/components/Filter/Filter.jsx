@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter, getFilter } from 'redux/filterContactSlice';
+import { Typography, TextField, Grid } from '@mui/material';
 
 export default function Filter() {
   const filterInput = useSelector(getFilter);
@@ -11,9 +12,22 @@ export default function Filter() {
   };
 
   return (
-    <div>
-      <h2>Filter</h2>
-      <input type="text" value={filterInput} onChange={handleFilterInput} />
-    </div>
+    <Grid container pt={10} pb={5} alignItems="center" justifyContent="center">
+      <Grid item>
+        <Typography variant="h6" align="left" mr={3}>
+          Filter:
+        </Typography>
+      </Grid>
+      <Grid item>
+        <TextField
+          variant="standard"
+          sx={{ width: '50ch' }}
+          size="small"
+          type="text"
+          value={filterInput}
+          onChange={handleFilterInput}
+        />
+      </Grid>
+    </Grid>
   );
 }

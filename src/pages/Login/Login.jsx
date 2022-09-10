@@ -1,3 +1,5 @@
+import { Container } from '@mui/system';
+import { Typography, TextField, Button, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
@@ -34,27 +36,41 @@ export default function Login() {
   };
 
   return (
-    <form action="" onSubmit={handleFormSubmit}>
-      <h2>Login</h2>
-      <label>
-        E-mail
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleInputChange}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleInputChange}
-        />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+    <Container>
+      <Typography align="center" variant="h6" component="h3" pt={3} mb={5}>
+        Login:
+      </Typography>
+      <form action="" onSubmit={handleFormSubmit}>
+        <Grid container direction="column" alignItems="center" spacing={6}>
+          <Grid item>
+            <TextField
+              sx={{ width: '50ch' }}
+              variant="filled"
+              size="small"
+              label="E-mail"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              sx={{ width: '50ch' }}
+              variant="filled"
+              size="small"
+              label="Password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <Button type="submit">Login</Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button, Typography, Grid } from '@mui/material';
 import {
   useAddContactMutation,
   useGetAllContactsQuery,
@@ -50,26 +51,47 @@ export default function AddContactForm() {
   };
 
   return (
-    <form action="" onSubmit={handleSubmitForm}>
-      <input
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        value={contactName}
-        onChange={handleInputChange}
-        required
-      />
-      <input
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-        value={contactNumber}
-        onChange={handleInputChange}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <Typography variant="h6" component="h3" align="left" pt={3} pb={3}>
+        Add contact number:
+      </Typography>
+      <form action="" onSubmit={handleSubmitForm}>
+        <Grid container alignItems="center" justifyContent="space-evenly">
+          <Grid item>
+            <TextField
+              variant="filled"
+              size="small"
+              label="Name"
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              value={contactName}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              variant="filled"
+              size="small"
+              label="Number"
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={contactNumber}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item>
+            <Button type="submit" variant="outlined">
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </div>
   );
 }

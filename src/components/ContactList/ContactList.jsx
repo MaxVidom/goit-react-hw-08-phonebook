@@ -1,6 +1,14 @@
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/filterContactSlice';
 import {
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import {
   useGetAllContactsQuery,
   useDeleteContactMutation,
 } from 'redux/contactApi';
@@ -11,12 +19,10 @@ export default function ContactList() {
   const filterContact = useSelector(getFilter);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const [deleteContact] = useDeleteContactMutation();
-  console.log(data);
-  console.log(error);
 
+  console.log(data);
   const getVisibleContacts = () => {
     const normalizedFilter = filterContact.toLowerCase();
-    console.log(data);
     return (
       data &&
       data.filter(contact =>
@@ -29,28 +35,30 @@ export default function ContactList() {
 
   return (
     <div>
-      <h2>Contact List</h2>
-      <ul>
+      <Typography variant="h5">Contact List:</Typography>
+
+      <List>
         {visibbleContacts &&
           isLoggedIn &&
           !error &&
           visibbleContacts.map(({ id, name, number }, i) => {
             return (
-              <li key={id}>
-                {i + 1}) {name}: {number};
-                <button
+              <ListItem key={id} sx={{ maxWidth: 600 }}>
+                <ListItemText primary={`${i + 1}) ${name}:`} />
+                <ListItemText primary={`+${number};`} />
+                <IconButton
                   type="button"
                   onClick={evt => {
                     evt.preventDefault();
                     deleteContact(id);
                   }}
                 >
-                  DELETE
-                </button>
-              </li>
+                  <DeleteIcon />
+                </IconButton>
+              </ListItem>
             );
           })}
-      </ul>
+      </List>
     </div>
   );
 }
